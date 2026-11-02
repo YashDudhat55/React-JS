@@ -1,0 +1,105 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: Arial, sans-serif;
+  background: #f1f5f9;
+  min-height: 100vh;
+}
+
+/* Heading */
+.heading {
+  text-align: center;
+  margin-top: 70px;
+  font-size: 30px;
+  font-weight: 700;
+  color: #1e293b;
+}
+
+/* OTP Card */
+.otp-container {
+  width: 380px;
+  margin: 35px auto;
+  padding: 45px 30px;
+  background: #ffffff;
+  border-radius: 18px;
+  border: 1px solid #e2e8f0;
+  box-shadow: 0 10px 35px rgba(0, 0, 0, 0.08);
+}
+
+/* Card Title */
+.card-title {
+  font-size: 22px;
+  color: #1e293b;
+  margin-bottom: 12px;
+}
+
+/* Description */
+.card-description {
+  font-size: 14px;
+  color: #64748b;
+  margin-bottom: 30px;
+  line-height: 1.6;
+}
+
+/* OTP Button */
+.otp-button {
+  width: 100%;
+  min-height: 65px;
+  padding: 15px;
+  border: none;
+  border-radius: 12px;
+  background: linear-gradient(135deg, #2563eb, #3b82f6);
+  color: #ffffff;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+/* Button Hover */
+.otp-button:hover:not(:disabled) {
+  transform: translateY(-3px);
+  box-shadow: 0 8px 18px rgba(37, 99, 235, 0.25);
+}
+
+/* Disabled Button */
+.otp-button:disabled {
+  background: #e2e8f0;
+  color: #64748b;
+  cursor: default;
+  transform: none;
+  box-shadow: none;
+}
+
+/* Timer */
+.timer {
+  font-size: 25px;
+  font-weight: 700;
+  letter-spacing: 2px;
+}
+
+/* Resend Text */
+.resend-text {
+  font-size: 17px;
+  font-weight: 600;
+}
+
+/* Resend Cursor */
+.otp-button:disabled:has(.resend-text) {
+  cursor: pointer;
+}
+
+/* Mobile Responsive */
+@media (max-width: 480px) {
+  .heading {
+    font-size: 24px;
+    margin-top: 50px;
+  }
+
+  .otp-container {
+    width: 90%;
+    padding: 35px 22px;
+  }
+}

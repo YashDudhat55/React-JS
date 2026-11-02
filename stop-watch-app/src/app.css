@@ -1,0 +1,595 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: Arial, Helvetica, sans-serif;
+}
+
+button,
+input {
+  font: inherit;
+}
+
+button {
+  cursor: pointer;
+}
+
+.stopwatch-app {
+  min-height: 100vh;
+  background: #f8f7ff;
+  color: #15152b;
+  transition: 0.3s;
+}
+
+/* Header */
+
+.header {
+  width: 100%;
+  min-height: 60px;
+  padding: 0px 4%;
+  background: linear-gradient(120deg, #7540d5, #6534c5);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 20px;
+  color: white;
+}
+
+.brand {
+  display: flex;
+  align-items: center;
+  gap: 20px;
+}
+
+.brand h1 {
+  font-size: 25px;
+  font-weight: 700;
+}
+
+.theme-toggle {
+  display: flex;
+  align-items: center;
+  gap: 5px;
+  padding: 3px;
+  border: 2px solid #d8c9ff;
+  border-radius: 30px;
+  background: #5424ae;
+  color: white;
+}
+
+.theme-toggle span {
+  display: flex;
+  align-items: center;
+  gap: 7px;
+  padding: 5px 17px;
+  border-radius: 25px;
+  font-size: 15px;
+  font-weight: 600;
+}
+
+.theme-toggle span.active {
+  background: white;
+  color: #4820a5;
+}
+
+/* Main Layout */
+
+.main-layout {
+  width: 100%;
+  padding: 40px 2%;
+  display: grid;
+  grid-template-columns: 1fr 1.12fr;
+  gap: 30px;
+}
+
+.left-section {
+  display: flex;
+  flex-direction: column;
+  gap: 30px;
+}
+
+/* Stopwatch Card */
+
+.timer-panel,
+.activity-form,
+.activity-panel {
+  background: white;
+  border: 1px solid #c5a8ff;
+  border-radius: 20px;
+  box-shadow: 0 4px 10px rgba(89, 48, 180, 0.10);
+}
+
+.timer-panel {
+  min-height: 510px;
+  padding: 15px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+/* Timer Circle */
+
+.timer-circle {
+  width: 300px;
+  height: 300px;
+  max-width: 100%;
+  border: 16px solid #ddc8ff;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.timer-content {
+  text-align: center;
+}
+
+.timer-icon {
+  color: #5926bd;
+  margin-bottom: 15px;
+}
+
+.timer-content h2 {
+  font-size: clamp(25px, 3vw, 45px);
+  font-weight: 700;
+  letter-spacing: 1px;
+  white-space: nowrap;
+}
+
+.time-labels {
+  display: flex;
+  justify-content: center;
+  gap: 30px;
+  margin-top: 10px;
+  color: #4d4d65;
+  font-size: 15px;
+}
+
+/* Timer Status */
+
+.timer-status {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  margin-top: 18px;
+  padding: 10px 30px;
+  border-radius: 25px;
+  background: #f0e8ff;
+  color: #5424b5;
+  font-size: 17px;
+  font-weight: 600;
+}
+
+.status-dot {
+  width: 13px;
+  height: 13px;
+  background: #642ec5;
+  border-radius: 50%;
+}
+
+.status-dot.running {
+  background: #16a34a;
+}
+
+/* Timer Buttons */
+
+.timer-controls {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  gap: 15px;
+  margin-top: 25px;
+}
+
+.control-btn {
+  min-width: 0;
+  flex: 1;
+  padding: 10px;
+  border: none;
+  border-radius: 14px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  font-size: 19px;
+  font-weight: 600;
+  color: white;
+  transition: 0.2s;
+}
+
+.control-btn:hover:not(:disabled) {
+  transform: translateY(-3px);
+}
+
+.control-btn:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+.start-btn {
+  background: #239d45;
+}
+
+.stop-btn {
+  background: #ed3343;
+}
+
+.reset-btn {
+  background: #e8e7f3;
+  color: #202033;
+}
+
+/* Add Activity */
+
+.activity-form {
+  overflow: hidden;
+  padding-bottom: 22px;
+}
+
+.activity-form h2 {
+  padding: 12px 20px;
+  background: #f0e7ff;
+  font-size: 25px;
+}
+
+.activity-input-row {
+  display: flex;
+  gap: 15px;
+  padding: 12px 12px 0;
+}
+
+.activity-input-row input {
+  width: 100%;
+  min-width: 0;
+  padding: 15px;
+  border: 1px solid #c9c3e8;
+  border-radius: 12px;
+  outline: none;
+  font-size: 16px;
+  color: #222;
+}
+
+.activity-input-row input:focus {
+  border-color: #713acb;
+}
+
+.add-btn {
+  padding: 12px 25px;
+  border: none;
+  border-radius: 12px;
+  background: #7040d1;
+  color: white;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 7px;
+  font-size: 17px;
+  font-weight: 600;
+  transition: 0.2s;
+}
+
+.add-btn:hover {
+  background: #5425b4;
+}
+
+.form-message {
+  padding: 12px 22px 0;
+  color: #e33445;
+  font-size: 14px;
+}
+
+/* Activity Log */
+
+.activity-panel {
+  min-height: 100%;
+  padding: 15px;
+}
+
+.activity-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 15px;
+  margin-bottom: 35px;
+}
+
+.activity-title {
+  display: flex;
+  align-items: center;
+  gap: 15px;
+  color: #5424b5;
+}
+
+.activity-title h2 {
+  color: #15152b;
+  font-size: 23px;
+}
+
+.activity-count {
+  padding: 8px 20px;
+  border-radius: 25px;
+  background: #eee6ff;
+  color: #5424b5;
+  font-size: 17px;
+  font-weight: 700;
+  white-space: nowrap;
+}
+
+/* Activity List */
+
+.activity-list {
+  display: flex;
+  flex-direction: column;
+  gap: 22px;
+}
+
+.activity-card {
+  min-height: 95px;
+  padding: 18px 25px;
+  border-radius: 20px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 15px;
+}
+
+.activity-card h3 {
+  font-size: 23px;
+  font-weight: 600;
+  overflow-wrap: anywhere;
+}
+
+.duration {
+  padding: 10px 22px;
+  border-radius: 30px;
+  font-size: 21px;
+  font-weight: 700;
+  white-space: nowrap;
+}
+
+.activity-0 {
+  background: #eaf3ff;
+}
+
+.activity-0 .duration {
+  background: #c7ddff;
+}
+
+.activity-1 {
+  background: #eaf8ec;
+}
+
+.activity-1 .duration {
+  background: #c8efce;
+}
+
+.activity-2 {
+  background: #fff6df;
+}
+
+.activity-2 .duration {
+  background: #ffe8ad;
+}
+
+.activity-3 {
+  background: #ffedf4;
+}
+
+.activity-3 .duration {
+  background: #ffcee1;
+}
+
+/* Empty Activity */
+
+.empty-state {
+  min-height: 350px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  color: #7540d5;
+  gap: 12px;
+}
+
+.empty-state h3 {
+  font-size: 18px;
+  color: #222;
+}
+
+.empty-state p {
+  color: #777;
+  font-size: 13px;
+}
+
+/* Dark Theme */
+
+.stopwatch-app.dark {
+  background: #171525;
+  color: white;
+}
+
+.dark .timer-panel,
+.dark .activity-form,
+.dark .activity-panel {
+  background: #242137;
+  border-color: #59428c;
+  color: white;
+}
+
+.dark .timer-content h2,
+.dark .activity-title h2,
+.dark .activity-card h3,
+.dark .empty-state h3 {
+  color: white;
+}
+
+.dark .time-labels {
+  color: #c9c3d9;
+}
+
+.dark .activity-form h2 {
+  background: #34284f;
+}
+
+.dark .activity-input-row input {
+  background: #302a43;
+  color: white;
+  border-color: #59428c;
+}
+
+.dark .activity-input-row input::placeholder {
+  color: #c0b8d0;
+}
+
+.dark .activity-card {
+  color: #1b1a27;
+  background: #302a43;
+}
+
+.dark .empty-state p {
+  color: #c0b8d0;
+}
+
+.dark .reset-btn {
+  background: #484158;
+  color: white;
+}
+
+/* Responsive Design */
+
+@media (max-width: 1000px) {
+  .main-layout {
+    grid-template-columns: 1fr;
+  }
+
+  .timer-panel {
+    min-height: 550px;
+  }
+
+  .activity-panel {
+    min-height: 450px;
+  }
+}
+
+@media (max-width: 600px) {
+  .header {
+    flex-direction: column;
+    align-items: flex-start;
+    padding: 20px;
+  }
+
+  .brand {
+    gap: 12px;
+  }
+
+  .brand h1 {
+    font-size: 22px;
+  }
+
+  .brand svg {
+    width: 35px;
+  }
+
+  .theme-toggle {
+    align-self: flex-end;
+  }
+
+  .main-layout {
+    padding: 20px 12px;
+    gap: 20px;
+  }
+
+  .left-section {
+    gap: 20px;
+  }
+
+  .timer-panel {
+    min-height: auto;
+    padding: 30px 15px;
+  }
+
+  .timer-circle {
+    width: 280px;
+    height: 280px;
+    border-width: 12px;
+  }
+
+  .timer-icon {
+    width: 45px;
+    height: 45px;
+  }
+
+  .timer-content h2 {
+    font-size: 38px;
+  }
+
+  .time-labels {
+    gap: 15px;
+    font-size: 13px;
+  }
+
+  .timer-controls {
+    gap: 8px;
+  }
+
+  .control-btn {
+    padding: 14px 5px;
+    font-size: 14px;
+    gap: 5px;
+  }
+
+  .control-btn svg {
+    width: 16px;
+  }
+
+  .activity-input-row {
+    flex-direction: column;
+  }
+
+  .add-btn {
+    width: 100%;
+  }
+
+  .activity-panel {
+    padding: 18px 12px;
+  }
+
+  .activity-header {
+    flex-wrap: wrap;
+    margin-bottom: 25px;
+  }
+
+  .activity-title h2 {
+    font-size: 22px;
+  }
+
+  .activity-title svg {
+    width: 28px;
+  }
+
+  .activity-count {
+    font-size: 15px;
+    padding: 9px 15px;
+  }
+
+  .activity-card {
+    min-height: 75px;
+    padding: 15px 12px;
+    gap: 8px;
+  }
+
+  .activity-card h3 {
+    font-size: 16px;
+  }
+
+  .duration {
+    padding: 9px 10px;
+    font-size: 14px;
+  }
+}
